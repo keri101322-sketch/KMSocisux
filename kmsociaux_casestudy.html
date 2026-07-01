@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KMSociaux — Case Studies</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --periwinkle: #8B9FE8;
+    --periwinkle-light: #c4cef5;
+    --periwinkle-dim: #1e2340;
+    --gray: #888888;
+    --gray-light: #f0f1f5;
+    --green: #2ecc71;
+    --text: #1a1a1a;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--white); letter-spacing: 1px; }
+  .nav-logo span { color: var(--periwinkle); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: #aaa; text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--periwinkle) !important; color: var(--black) !important; padding: 8px 20px; border-radius: 4px; font-weight: 600 !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--black);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 120px 48px 80px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,159,232,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 4px; color: var(--periwinkle); text-transform: uppercase; margin-bottom: 24px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 700; color: var(--white); text-align: center; line-height: 1.05; max-width: 900px; margin-bottom: 12px; }
+  .hero-title em { font-style: italic; color: var(--periwinkle); }
+  .hero-sub { font-size: 16px; color: #666; text-align: center; max-width: 520px; line-height: 1.7; margin-bottom: 48px; }
+  .hero-stats { display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; border-top: 1px solid #1e1e1e; padding-top: 48px; width: 100%; max-width: 800px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 36px; font-weight: 700; color: var(--periwinkle); font-family: 'Playfair Display', serif; display: block; }
+  .hero-stat-label { font-size: 11px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; display: block; }
+
+  /* SECTIONS */
+  section { padding: 96px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 4px; color: var(--periwinkle); text-transform: uppercase; margin-bottom: 16px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--black); margin-bottom: 16px; line-height: 1.2; }
+  .section-sub { font-size: 16px; color: var(--gray); line-height: 1.7; max-width: 560px; }
+
+  /* SERVICES */
+  .services { background: var(--gray-light); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; margin-top: 56px; }
+  .service-card { background: var(--white); padding: 36px 32px; transition: transform 0.2s; }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-icon { width: 40px; height: 40px; background: var(--black); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 20px; }
+  .service-name { font-size: 15px; font-weight: 600; color: var(--black); margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+  /* CASE STUDIES */
+  .case-study { border-bottom: 1px solid #eee; }
+  .case-study:last-of-type { border-bottom: none; }
+  .case-study.alt { background: var(--gray-light); }
+  .cs-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 56px; }
+  .cs-tag { display: inline-block; background: var(--black); color: var(--periwinkle); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 16px; }
+  .cs-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; color: var(--black); line-height: 1.2; max-width: 540px; }
+  .cs-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .cs-meta-tag { font-size: 11px; font-weight: 600; color: var(--gray); border: 1px solid #ddd; padding: 4px 12px; border-radius: 20px; }
+  .cs-metrics { display: flex; gap: 0; flex-shrink: 0; border: 1px solid #eee; }
+  .cs-metric { text-align: center; padding: 20px 28px; border-left: 1px solid #eee; }
+  .cs-metric:first-child { border-left: none; }
+  .cs-metric-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--periwinkle); display: block; line-height: 1; }
+  .cs-metric-label { font-size: 10px; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; display: block; }
+  .cs-body { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .cs-col-title { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--periwinkle); margin-bottom: 20px; }
+  .cs-text { font-size: 14px; color: #444; line-height: 1.8; margin-bottom: 16px; }
+  .cs-bullets { list-style: none; }
+  .cs-bullets li { font-size: 14px; color: #444; line-height: 1.7; padding: 8px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; gap: 12px; }
+  .cs-bullets li:last-child { border-bottom: none; }
+  .cs-bullets li::before { content: '→'; color: var(--periwinkle); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .cs-results li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .cs-skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .cs-skill { background: var(--black); color: var(--periwinkle-light); font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 2px; letter-spacing: 0.5px; }
+
+  /* HIGHLIGHT BOX */
+  .cs-highlight {
+    background: var(--black); border-left: 3px solid var(--periwinkle);
+    padding: 20px 24px; margin-bottom: 24px;
+  }
+  .cs-highlight-num { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--periwinkle); line-height: 1; }
+  .cs-highlight-label { font-size: 12px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* PROCESS */
+  .process { background: var(--black); }
+  .process .section-title { color: var(--white); }
+  .process .section-sub { color: #555; }
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; margin-top: 56px; }
+  .process-step { background: #111; padding: 40px 32px; position: relative; overflow: hidden; transition: background 0.2s; }
+  .process-step:hover { background: #161616; }
+  .process-step-num { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 700; color: #1a1a1a; position: absolute; top: 16px; right: 20px; line-height: 1; }
+  .process-step-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .process-step-desc { font-size: 13px; color: #555; line-height: 1.7; }
+  .process-icon { font-size: 24px; margin-bottom: 20px; display: block; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; margin-top: 56px; }
+  .pricing-card { border: 1px solid #eee; padding: 40px 32px; position: relative; transition: border-color 0.2s, transform 0.2s; }
+  .pricing-card:hover { border-color: var(--periwinkle); transform: translateY(-4px); }
+  .pricing-card.featured { background: var(--black); border-color: var(--periwinkle); }
+  .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--periwinkle); color: var(--black); font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 4px 16px; border-radius: 20px; text-transform: uppercase; white-space: nowrap; }
+  .pricing-name { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+  .pricing-card.featured .pricing-name { color: #555; }
+  .pricing-price { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--black); line-height: 1; }
+  .pricing-card.featured .pricing-price { color: var(--white); }
+  .pricing-period { font-size: 13px; color: var(--gray); margin-top: 4px; margin-bottom: 32px; }
+  .pricing-features { list-style: none; }
+  .pricing-features li { font-size: 13px; color: #444; padding: 10px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
+  .pricing-card.featured .pricing-features li { color: #888; border-bottom-color: #1a1a1a; }
+  .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .pricing-cta { display: block; width: 100%; margin-top: 32px; padding: 14px; text-align: center; background: var(--black); color: var(--white); font-size: 13px; font-weight: 700; letter-spacing: 1px; text-decoration: none; text-transform: uppercase; transition: opacity 0.2s; }
+  .pricing-card.featured .pricing-cta { background: var(--periwinkle); color: var(--black); }
+  .pricing-cta:hover { opacity: 0.85; }
+
+  /* GUARANTEE */
+  .guarantee { background: var(--black); border-top: 1px solid #1a1a1a; padding: 64px 48px; text-align: center; }
+  .guarantee-inner { max-width: 600px; margin: 0 auto; }
+  .guarantee-icon { font-size: 48px; margin-bottom: 20px; }
+  .guarantee-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+  .guarantee-text { font-size: 15px; color: #555; line-height: 1.8; }
+  .guarantee-text strong { color: var(--periwinkle); }
+
+  /* CTA */
+  .cta-section { background: var(--periwinkle); padding: 96px 48px; text-align: center; }
+  .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; color: var(--black); margin-bottom: 16px; }
+  .cta-sub { font-size: 16px; color: rgba(0,0,0,0.6); margin-bottom: 40px; }
+  .cta-btn { display: inline-block; background: var(--black); color: var(--white); padding: 18px 48px; font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
+  .cta-btn:hover { opacity: 0.85; }
+  .cta-note { font-size: 12px; color: rgba(0,0,0,0.4); margin-top: 16px; }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-weight: 700; color: var(--white); font-size: 16px; letter-spacing: 1px; }
+  .footer-logo span { color: var(--periwinkle); }
+  .footer-text { font-size: 12px; color: #333; }
+  .footer-link { color: var(--periwinkle); text-decoration: none; font-size: 12px; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { padding: 100px 24px 64px; }
+    .cs-body { grid-template-columns: 1fr; gap: 40px; }
+    .cs-header { flex-direction: column; }
+    .cs-metrics { width: 100%; }
+    footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+  }
+
+  /* FLOATING CTA */
+  .floating-cta {
+    position: fixed; bottom: 32px; right: 32px; z-index: 999;
+    background: var(--periwinkle); color: var(--black);
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    padding: 16px 28px; border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(139,159,232,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .floating-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(139,159,232,0.6);
+  }
+  .floating-cta-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  @media (max-width: 768px) {
+    .floating-cta { bottom: 20px; right: 20px; padding: 14px 20px; font-size: 12px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KM<span>Sociaux</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Meta Ads Agency · kmsociaux.co</p>
+  <h1 class="hero-title">We make your ad budget <em>work harder.</em></h1>
+  <p class="hero-sub">KMSociaux runs Facebook & Instagram ad campaigns that generate real leads and revenue for local service businesses and growing brands.</p>
+  
+  <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-bottom: 48px;">
+    <a href="#contact" style="display:inline-block; background:var(--periwinkle); color:var(--black); padding:16px 40px; font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Book a Free Call</a>
+    <a href="#work" style="display:inline-block; background:transparent; color:var(--white); padding:16px 40px; font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border:1px solid #333; transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--periwinkle)'" onmouseout="this.style.borderColor='#333'">See Our Work</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">207%</span>
+      <span class="hero-stat-label">ROAS Achieved</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">$0.09</span>
+      <span class="hero-stat-label">Cost Per Result</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100K</span>
+      <span class="hero-stat-label">Followers Grown</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-label">Results Guarantee</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <p class="eyebrow">What We Do</p>
+    <h2 class="section-title">Everything your ads need to convert.</h2>
+    <p class="section-sub">We handle the full picture — strategy, setup, creative, and optimization — so you can focus on running your business.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-name">Campaign Strategy & Setup</div>
+        <div class="service-desc">Full campaign architecture built from scratch — audience research, targeting structure, pixel setup, and creative direction before a single dollar is spent.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <div class="service-name">Lead Generation</div>
+        <div class="service-desc">Drive consistent quote requests, bookings, and inquiries straight to your phone or inbox. We target buyers in your area who are ready to act.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✏️</div>
+        <div class="service-name">Ad Creative Strategy</div>
+        <div class="service-desc">Scroll-stopping ad concepts, hooks, and copy built to convert cold audiences into paying customers — not just impressions.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Pixel & Tracking Setup</div>
+        <div class="service-desc">Full Meta Pixel installation and conversion tracking so every click, lead, and sale is accounted for and attributable to your spend.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <div class="service-name">Ongoing Optimization</div>
+        <div class="service-desc">Daily monitoring, weekly reporting, and continuous testing. We cut what's not working and scale what is — your budget never sits still.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Social Media Growth</div>
+        <div class="service-desc">Hook-first content strategy for TikTok and Instagram that builds watch time, grows followers, and converts viewers into customers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS INTRO -->
+<section id="work" style="padding-bottom: 0; background: var(--black);">
+  <div class="section-inner">
+    <p class="eyebrow">Our Work</p>
+    <h2 class="section-title" style="color: var(--white);">Real campaigns. Real results.</h2>
+    <p class="section-sub" style="color: #555;">Every number below came from an actual campaign we built and managed from the ground up.</p>
+  </div>
+</section>
+
+<!-- CS1 — SPIRITUALITY / CLICKBANK -->
+<section class="case-study" style="background: var(--black); border-bottom: 1px solid #1a1a1a;">
+  <div class="section-inner">
+    <div class="cs-header">
+      <div>
+        <span class="cs-tag">Case Study 01</span>
+        <h3 class="cs-title" style="color: var(--white);">Spirituality Niche — ClickBank Affiliate Campaign</h3>
+        <div class="cs-meta">
+          <span class="cs-meta-tag" style="border-color: #333; color: #666;">Meta Ads</span>
+          <span class="cs-meta-tag" style="border-color: #333; color: #666;">Spirituality</span>
+          <span class="cs-meta-tag" style="border-color: #333; color: #666;">ClickBank</span>
+          <span class="cs-meta-tag" style="border-color: #333; color: #666;">Affiliate Marketing</span>
+        </div>
+      </div>
+      <div class="cs-metrics" style="border-color: #222;">
+        <div class="cs-metric" style="border-left-color: #222;">
+          <span class="cs-metric-num">207%</span>
+          <span class="cs-metric-label">ROAS</span>
+        </div>
+        <div class="cs-metric" style="border-left-color: #222;">
+          <span class="cs-metric-num">$4,651</span>
+          <span class="cs-metric-label">Revenue Generated</span>
+        </div>
+        <div class="cs-metric" style="border-left-color: #222;">
+          <span class="cs-metric-num">$2,247</span>
+          <span class="cs-metric-label">Ad Spend</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div>
+        <p class="cs-col-title">The Challenge</p>
+        <p class="cs-text" style="color: #555;">Run a profitable paid traffic campaign in the competitive spirituality niche on ClickBank — promoting offers including Soulmate Sketch and Billionaire Brainwave to cold Facebook and Instagram audiences with a goal of generating a positive return on ad spend.</p>
+        <ul class="cs-bullets">
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Drive cold traffic profitably to high-converting spirituality offers</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Build and test audiences from scratch with no warm data</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Develop creatives that resonated with spirituality and manifestation buyers</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Manage $2,247 in ad spend while maintaining a profitable ROAS</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-title">The Results</p>
+        <div class="cs-highlight">
+          <div class="cs-highlight-num">$4,651</div>
+          <div class="cs-highlight-label">Revenue generated on $2,247 in spend</div>
+        </div>
+        <ul class="cs-bullets cs-results">
+          <li style="color: #555; border-bottom-color: #1a1a1a;">207% ROAS — generated $2.07 for every $1 spent in ad budget</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">$4,651 in total revenue driven from a $2,247 campaign investment</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Successfully identified top-performing audience segments in the spirituality niche</li>
+          <li style="color: #555; border-bottom-color: #1a1a1a;">Built and optimized a full traffic funnel including bridge pages and pixel tracking</li>
+        </ul>
+        <div class="cs-skills">
+          <span class="cs-skill">Meta Ads Manager</span>
+          <span class="cs-skill">ROAS Optimization</span>
+          <span class="cs-skill">Audience Testing</span>
+          <span class="cs-skill">ClickBank</span>
+          <span class="cs-skill">Bridge Pages</span>
+          <span class="cs-skill">Pixel Tracking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS2 — HAIR CARE -->
+<section class="case-study">
+  <div class="section-inner">
+    <div class="cs-header">
+      <div>
+        <span class="cs-tag">Case Study 02</span>
+        <h3 class="cs-title">E-Commerce Hair Care — Amazon Product Campaign</h3>
+        <div class="cs-meta">
+          <span class="cs-meta-tag">Meta Ads</span>
+          <span class="cs-meta-tag">E-Commerce</span>
+          <span class="cs-meta-tag">Amazon Associates</span>
+          <span class="cs-meta-tag">Cold Traffic</span>
+        </div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric-num">$0.09</span>
+          <span class="cs-metric-label">Cost Per Result</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric-num">$500+</span>
+          <span class="cs-metric-label">Spend Managed</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div>
+        <p class="cs-col-title">The Challenge</p>
+        <p class="cs-text">Drive affordable, high-intent traffic to an Amazon hair care product listing through cold Facebook and Instagram audiences — with no existing pixel data, no warm audience, and starting completely from scratch.</p>
+        <ul class="cs-bullets">
+          <li>Build effective audiences from zero with no prior data</li>
+          <li>Test multiple creatives to find what resonated with the buyer</li>
+          <li>Keep cost per result as low as possible while maintaining quality</li>
+          <li>Manage full campaign lifecycle from setup through optimization</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-title">The Results</p>
+        <div class="cs-highlight" style="background: var(--gray-light); border-left-color: var(--periwinkle);">
+          <div class="cs-highlight-num" style="color: var(--periwinkle);">$0.09</div>
+          <div class="cs-highlight-label" style="color: var(--gray);">Cost per result — industry average is $0.50–$1.50</div>
+        </div>
+        <ul class="cs-bullets cs-results">
+          <li>Achieved $0.09 cost per result — well below industry benchmarks</li>
+          <li>Managed $500+ in Meta ad spend across the full campaign</li>
+          <li>Identified top-performing audience segments in the hair care niche</li>
+          <li>Built and tested multiple ad creative variations to find winners</li>
+        </ul>
+        <div class="cs-skills">
+          <span class="cs-skill">Meta Ads Manager</span>
+          <span class="cs-skill">Audience Targeting</span>
+          <span class="cs-skill">Creative Testing</span>
+          <span class="cs-skill">Amazon Associates</span>
+          <span class="cs-skill">Cost Optimization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS3 — INSTAGRAM 100K -->
+<section class="case-study alt">
+  <div class="section-inner">
+    <div class="cs-header">
+      <div>
+        <span class="cs-tag">Case Study 03</span>
+        <h3 class="cs-title">Spirituality Brand — Instagram Growth to 100K</h3>
+        <div class="cs-meta">
+          <span class="cs-meta-tag">Instagram Growth</span>
+          <span class="cs-meta-tag">Organic Strategy</span>
+          <span class="cs-meta-tag">Spirituality Niche</span>
+          <span class="cs-meta-tag">Content Strategy</span>
+        </div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric-num">100K</span>
+          <span class="cs-metric-label">Followers Gained</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric-num">3 mo</span>
+          <span class="cs-metric-label">Time to 100K</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div>
+        <p class="cs-col-title">The Challenge</p>
+        <p class="cs-text">Grow a spirituality brand Instagram page from zero to a significant following in as short a time as possible — using organic content strategy, hook optimization, and consistent posting without paid advertising.</p>
+        <ul class="cs-bullets">
+          <li>Build a content strategy tailored to the spirituality audience on Instagram</li>
+          <li>Develop hooks that stopped the scroll and drove saves and shares</li>
+          <li>Grow consistently month over month without relying on paid promotion</li>
+          <li>Build an engaged audience that converted into affiliate traffic</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-title">The Results</p>
+        <div class="cs-highlight" style="background: var(--black); border-left-color: var(--periwinkle);">
+          <div class="cs-highlight-num">100,000</div>
+          <div class="cs-highlight-label" style="color: #555;">Followers grown in 3 months — organically</div>
+        </div>
+        <ul class="cs-bullets cs-results">
+          <li>Grew Instagram page from 0 to 100K followers in just 3 months</li>
+          <li>Built an engaged spirituality audience through consistent content strategy</li>
+          <li>Developed a hook framework that consistently drove high reach and saves</li>
+          <li>Turned organic following into a traffic source for affiliate offers</li>
+        </ul>
+        <div class="cs-skills">
+          <span class="cs-skill">Instagram Strategy</span>
+          <span class="cs-skill">Hook Copywriting</span>
+          <span class="cs-skill">Content Planning</span>
+          <span class="cs-skill">Audience Growth</span>
+          <span class="cs-skill">Organic Traffic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS4 — TIKTOK YOUTUBER -->
+<section class="case-study">
+  <div class="section-inner">
+    <div class="cs-header">
+      <div>
+        <span class="cs-tag">Case Study 04</span>
+        <h3 class="cs-title">Content Creator — TikTok Growth & Hook Strategy</h3>
+        <div class="cs-meta">
+          <span class="cs-meta-tag">TikTok Strategy</span>
+          <span class="cs-meta-tag">Content Creator</span>
+          <span class="cs-meta-tag">Hook Optimization</span>
+          <span class="cs-meta-tag">3-Month Contract</span>
+        </div>
+      </div>
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric-num">3 mo</span>
+          <span class="cs-metric-label">Full Contract</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric-num">↑↑↑</span>
+          <span class="cs-metric-label">Views & Watch Time</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-body">
+      <div>
+        <p class="cs-col-title">The Challenge</p>
+        <p class="cs-text">An established YouTuber expanding to TikTok needed a content strategy that would translate their existing audience into short-form growth — with a specific focus on hooks, watch time, and average views per post.</p>
+        <ul class="cs-bullets">
+          <li>Translate a YouTube brand into high-performing TikTok content</li>
+          <li>Improve hook strategy to stop the scroll in the first 3 seconds</li>
+          <li>Grow followers and average views per post consistently each month</li>
+          <li>Build a repeatable content system the creator could sustain independently</li>
+        </ul>
+      </div>
+      <div>
+        <p class="cs-col-title">The Results</p>
+        <div class="cs-highlight" style="background: var(--gray-light); border-left-color: var(--periwinkle);">
+          <div class="cs-highlight-num" style="color: var(--periwinkle);">↑ Watch Time</div>
+          <div class="cs-highlight-label" style="color: var(--gray);">Improved hooks drove higher retention & avg views per post</div>
+        </div>
+        <ul class="cs-bullets cs-results">
+          <li>Consistent follower growth delivered across full 3-month contract</li>
+          <li>Increased average views per post through improved hook structure</li>
+          <li>Improved watch time and completion rates by optimizing the first 3 seconds</li>
+          <li>Full contract completed — client retained for entire engagement period</li>
+          <li>Built a repeatable content framework the creator continues to use</li>
+        </ul>
+        <div class="cs-skills">
+          <span class="cs-skill">TikTok Strategy</span>
+          <span class="cs-skill">Hook Copywriting</span>
+          <span class="cs-skill">Watch Time Optimization</span>
+          <span class="cs-skill">Content Planning</span>
+          <span class="cs-skill">Creator Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <p class="eyebrow">How It Works</p>
+    <h2 class="section-title">Simple from day one.</h2>
+    <p class="section-sub">No jargon, no runaround. Here's exactly what working with KMSociaux looks like.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="process-step-num">01</span>
+        <span class="process-icon">📞</span>
+        <div class="process-step-title">Free Strategy Call</div>
+        <div class="process-step-desc">We learn your business, your goals, and your current marketing situation. 15 minutes, no pitch, just an honest conversation.</div>
+      </div>
+      <div class="process-step">
+        <span class="process-step-num">02</span>
+        <span class="process-icon">🏗️</span>
+        <div class="process-step-title">Strategy & Setup</div>
+        <div class="process-step-desc">We build your full campaign infrastructure — audiences, pixel, creatives, and copy — everything ready before a single dollar is spent.</div>
+      </div>
+      <div class="process-step">
+        <span class="process-step-num">03</span>
+        <span class="process-icon">🚀</span>
+        <div class="process-step-title">Launch & Optimize</div>
+        <div class="process-step-desc">Campaigns go live. We monitor daily, cut what isn't working, and pour budget into what is. Your money is never sitting still.</div>
+      </div>
+      <div class="process-step">
+        <span class="process-step-num">04</span>
+        <span class="process-icon">📋</span>
+        <div class="process-step-title">Report & Scale</div>
+        <div class="process-step-desc">Clear weekly reports in plain English. You always know what's working, what it cost, and what we're doing next.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<div class="guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-icon">🛡️</div>
+    <h3 class="guarantee-title">The KMSociaux Guarantee</h3>
+    <p class="guarantee-text">We put our money where our mouth is. If we don't deliver <strong>agreed results within your first month</strong>, you get a full refund. No arguments, no fine print. We're confident in what we do — and we think you should be too before you spend a dollar.</p>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <p class="eyebrow">Investment</p>
+    <h2 class="section-title">Straightforward pricing.</h2>
+    <p class="section-sub">No hidden fees, no long-term contracts to start. Pick the package that fits where you are right now.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-price">$500</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Campaign setup & management</li>
+          <li>1 ad set with 2 creatives</li>
+          <li>Audience research & targeting</li>
+          <li>Bi-weekly performance report</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#contact" class="pricing-cta">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-name">Growth</div>
+        <div class="pricing-price">$800</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>3 ad sets with 4 creatives</li>
+          <li>Weekly performance report</li>
+          <li>Priority support</li>
+          <li>Monthly strategy call</li>
+        </ul>
+        <a href="#contact" class="pricing-cta">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-name">Full Service</div>
+        <div class="pricing-price">$1,200</div>
+        <div class="pricing-period">per month</div>
+        <ul class="pricing-features">
+          <li>Everything in Growth</li>
+          <li>Full creative development</li>
+          <li>Landing page optimization</li>
+          <li>Daily monitoring</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="#contact" class="pricing-cta">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2 class="cta-title">Ready to fill your pipeline?</h2>
+  <p class="cta-sub">Book a free 15-minute strategy call. No pressure — just an honest look at what we can do for your business.</p>
+  <a href="mailto:hello@kmsociaux.co" class="cta-btn">Book Your Free Call</a>
+  <p class="cta-note">Or email us directly at hello@kmsociaux.co</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KM<span>Sociaux</span></div>
+  <p class="footer-text">© 2025 KMSociaux. All rights reserved.</p>
+  <a href="https://kmsociaux.co" class="footer-link">kmsociaux.co →</a>
+</footer>
+
+
+<!-- FLOATING CTA -->
+<a href="#contact" class="floating-cta">
+  <span class="floating-cta-dot"></span>
+  Book a Free Call
+</a>
+
+</body>
+</html>
